@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#479de6",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/iconfont-home.png",
+        "selectedIconPath": "assets/images/iconfont-home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/iconfont-home.png",
+        "selectedIconPath": "assets/images/iconfont-home-active.png",
+        "text": "首页2"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
