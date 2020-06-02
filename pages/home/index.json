@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-notify": "../../dist/notify/index",
+    "van-grid": "../../dist/grid/index",
+    "van-grid-item": "../../dist/grid-item/index",
+    "van-panel": "../../dist/panel/index"
+  },
+
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "首页",
+  "disableScroll": true,
+  "enablePullDownRefresh": true
+
+}

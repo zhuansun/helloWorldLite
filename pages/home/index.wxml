@@ -1,0 +1,46 @@
+<van-notify id="van-notify" />
+
+<scroll-view scroll-y="true" style="height:{{ (deviceHeight) + 'px' }}" bindscrolltolower="getMore" lower-threshold='30' scroll-with-animation='true' >
+
+  <van-panel title="欢迎您的使用"></van-panel>
+  <van-grid clickable column-num="2">
+    <van-grid-item
+      icon="home-o"
+      link-type="navigateTo"
+      url="/pages/home/index"
+      text="Navigate 跳转"
+    />
+    <van-grid-item
+      icon="search"
+      link-type="reLaunch"
+      url="/pages/home/index"
+      text="ReLaunch 跳转"
+    />
+    <van-grid-item
+      icon="search"
+      link-type="reLaunch"
+      url="/pages/home/index"
+      text="ReLaunch 跳转"
+    />
+    <van-grid-item
+      icon="search"
+      link-type="reLaunch"
+      url="/pages/home/index"
+      text="ReLaunch 跳转"
+    />
+  </van-grid>
+
+<!-- 
+  <i-row>
+    <i-col i-class="color-col" span="12" wx:for="{{dataList}}" wx:key="id">
+      <i-card i-class="color">
+        <view id="{{item.id}}" slot="content" class="color-item {{item.colorClass}}" bindtap="clickToUseModule">
+          <view class="color-item-title">{{item.name}}</view>
+          <view class="color-item-content">{{item.description}}</view>
+        </view>
+      </i-card>
+    </i-col>
+  </i-row> -->
+  <i-load-more loading="{{ paginate.hasNext }}" />
+  <i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
+</scroll-view>

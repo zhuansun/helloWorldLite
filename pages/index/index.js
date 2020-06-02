@@ -97,19 +97,20 @@ Page({
   onLoad: function() {
     const app = getApp()
     console.log("userinfo"+app.globalData.userInfo);
+    const _this = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-        active: 1
-      })
+        hasUserInfo: true
+      });
+      _this.toUse();
     } else if (this.data.canIUse) {
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true,
-          active: 1
-        })
+        });
+        _this.toUse();
       }
     } else {
       wx.getUserInfo({
@@ -119,8 +120,8 @@ Page({
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true,
-            active: 1
-          })
+          });
+          _this.toUse();
         }
       })
     }
