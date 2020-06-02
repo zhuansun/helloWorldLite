@@ -28,7 +28,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.5.1",
 	"appid": "wxd4b67e075ff92460",
-	"projectname": "youyong-applet",
+	"projectname": "helloWorldLite",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

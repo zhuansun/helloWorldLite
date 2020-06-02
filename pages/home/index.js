@@ -4,6 +4,34 @@ const app = getApp()
 
 Page({
   data: {
+        // Banner数据
+        images:[
+          "http://img.zcool.cn/community/014056564bd8596ac7251c94eb5559.jpg",
+          "http://img.zcool.cn/community/01e03b58047e96a84a0e282b09e8fc.jpg",
+          "http://pic.90sjimg.com/back_pic/00/00/69/40/d678a42886e0232aaea0d6e69e9b1945.jpg",
+          "http://img.zcool.cn/community/0132dd55800bc700000059ffbe83e9.jpg@1280w_1l_2o_100sh.jpg",
+          "http://img.zcool.cn/community/0154755a2df102a80120ba3828b5af.jpg@1280w_1l_2o_100sh.jpg",
+          "http://pic.90sjimg.com/back_pic/00/00/69/40/bf4f8e2ab7e05dc3c7cc2a7f7e9c2fe7.jpg",
+          "http://img.zcool.cn/community/01a2a2594943d3a8012193a328e0fd.jpg@1280w_1l_2o_100sh.jpg"
+        ],
+        // 是否显示面板指示点
+        indicatorDots: true,
+        // 滑动方向是否为纵向
+        vertical: false,
+        // 自动切换
+        autoplay: true,
+        // 采用衔接滑动
+        circular: true,
+        // 自动切换时间间隔2s
+        interval: 2000,
+        // 滑动动画时长0.5s
+        duration: 500,
+        // 前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值
+        previousMargin: 0,
+        // 后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值
+        nextMargin: 0,
+    timer: null, // 保存定时器
+    scrollTop: 5, // 设定触发条件的距离
     deviceHeight: null,
     dataList: [],
     spinShow: false,
@@ -11,13 +39,145 @@ Page({
       page: 1,
       pageSize: 20,
       hasNext: false
-    }
+    },
+    gridData:[
+      {
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"2",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"3",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"4",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"5",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转",
+        "info":"99"
+      },{
+        "id":"6",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"7",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"8",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"8",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"10",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"11",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"12",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"13",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"14",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"15",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"16",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"17",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"18",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"19",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },{
+        "id":"20",
+        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      }
+    ],
+    gridDataPush:
+        {
+          "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+          "link-type": "navigateTo",
+          "url": 11,
+          "text": "Navigate 跳转"
+        }
   },
 
   getSystemInfo: function() {
     const _this = this;
     wx.getSystemInfo({
       success(res) {
+        console.log("asdasdasd")
+        console.log(res.windowHeight)
         _this.setData({
           deviceWidth: res.windowWidth,
           deviceHeight: res.windowHeight,
@@ -30,7 +190,6 @@ Page({
     this.getSystemInfo();
     this.getModuleList(this.data.paginate.page);
   },
-
 
   /**
    * 点击某一个模块，开始使用模块
@@ -68,14 +227,17 @@ Page({
   //   // 停止下拉动作
   //   wx.stopPullDownRefresh();
   // },
-
+  // onPullDownRefresh:function(){
+  //   console.log("下拉刷新");
+  //   wx.stopPullDownRefresh()
+  // },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   getMore: function() {
     if(this.data.paginate.hasNext){
-      console.log("下拉加载，下拉加载下拉加载，下拉加载下拉加载，下拉加载下拉加载，下拉加载");
+      console.log("上拉加载上拉加载上拉加载上拉加载上拉加载");
       // 显示加载图标
       // wx.showLoading({
       //   title: '玩命加载中',
@@ -85,6 +247,49 @@ Page({
     }
     
   },
+
+  onPullDownRefresh() {
+    // 监听该页面用户下拉刷新事件
+    // 可以在触发时发起请求，请求成功后调用wx.stopPullDownRefresh()来结束下拉刷新
+     console.log('下拉拉拉')
+    },
+    refresh() { // 函数式触发开始下拉刷新。如可以绑定按钮点击事件来触发下拉刷新
+      wx.startPullDownRefresh({
+        success(errMsg) {
+          console.log('开始下拉刷新', errMsg)
+        },
+        complete() {
+          console.log('下拉刷新完毕')
+        }
+      });
+    },
+    scrollFn(e) { 
+    // 防抖，优化性能
+    // 当滚动时，滚动条位置距离页面顶部小于设定值时，触发下拉刷新
+    // 通过将设定值尽可能小，并且初始化scroll-view组件竖向滚动条位置为设定值。来实现下拉刷新功能，但没有官方的体验好
+      clearTimeout(this.timer)
+      if (e.detail.scrollTop < this.data.scrollTop) {     
+        this.timer = setTimeout( () => {
+          this.refresh()
+        }, 350)
+      }
+    },
+    loadMore() { // 触底加载更多
+      console.log("上拉上拉")
+      for(let i=0; i<20; i++){
+        this.data.gridData.push(this.data.gridDataPush)
+        
+        this.setData({
+          'gridData': this.data.gridData
+       })
+      }
+        
+           console.log("上拉结束")
+     },
+
+  // onReachBottom: function(){
+  //   console.log("上拉加载上拉加载上拉加载上拉加载上拉加载");
+  // },
 
   //获取首页数据，进行加载
   getModuleList: function(currentPage) {
