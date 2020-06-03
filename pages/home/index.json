@@ -3,7 +3,8 @@
     "van-notify": "../../dist/notify/index",
     "van-grid": "../../dist/grid/index",
     "van-grid-item": "../../dist/grid-item/index",
-    "van-panel": "../../dist/panel/index"
+    "van-panel": "../../dist/panel/index",
+    "van-loading": "../../dist/loading/index"
   },
 
   "navigationBarBackgroundColor": "#fff",

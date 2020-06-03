@@ -1,41 +1,20 @@
 <van-notify id="van-notify" />
-<van-panel title="欢迎您的使用"></van-panel>
-<!-- banner页面 -->
-<swiper indicator-dots="{{indicatorDots}}" 
-        autoplay="{{autoplay}}" 
-        circular="{{circular}}" 
-        vertical="{{vertical}}" 
-        interval="{{interval}}" 
-        duration="{{duration}}" 
-        previous-margin="{{previousMargin}}px" 
-        next-margin="{{nextMargin}}px">
-    <block wx:for='{{images}}' wx:key='index'>
-      <swiper-item>
-        <image src='{{item}}' mode='aspectFill' class='swiper-item-images'/>
-      </swiper-item>
-    </block>
-</swiper>
+<scroll-view scroll-y="{{true}}" style="height:{{ (deviceHeight) + 'px' }}; margin-top:30" bindscrolltolower="loadMore" bindscroll="scrollFn" scroll-with-animation='true'>
+	<van-panel title="欢迎您的使用"></van-panel>
+	<!-- banner页面 -->
+	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+		<block wx:for='{{images}}' wx:key='index'>
+			<swiper-item>
+				<image src='{{item}}' mode='aspectFill' class='swiper-item-images' />
+			</swiper-item>
+		</block>
+	</swiper>
 
-<view style="height:50px"></view>
+	<van-grid clickable border="{{ true }}" column-num="3">
+		<van-grid-item wx:for="{{gridData}}" wx:key="{{index}}" icon="{{item.icon}}" link-type="{{item.link-type}}" url="{{item.url}}" text="{{item.text}}" info="{{item.info}}" />
+	</van-grid>
+	<view hidden="{{hiddenScrollLoading}}" class="scroll-loading">
+		<van-loading size="24px">加载中...</van-loading>
+	</view>
 
-<scroll-view 
-    scroll-y="{{true}}" 
-    style="height:{{ (deviceHeight-250) + 'px' }}; margin-top:30" 
-    bindscrolltolower="loadMore" 
-    bindscroll="scrollFn"
-    scroll-with-animation='true' >
-  <van-grid clickable border="{{ true }}" column-num="3">
-    <van-grid-item
-      wx:for="{{gridData}}"  wx:key="{{index}}"
-      icon="{{item.icon}}"
-      link-type="{{item.link-type}}"
-      url="{{item.url}}"
-      text="{{item.text}}"
-      info="{{item.info}}"
-    />
-  </van-grid>
-
-  <i-load-more loading="{{ paginate.hasNext }}" />
-  <i-spin size="large" fix wx:if="{{ spinShow }}"></i-spin>
 </scroll-view>
-<view style="height:50px"></view>
