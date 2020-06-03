@@ -1,5 +1,5 @@
 <van-notify id="van-notify" />
-<scroll-view scroll-y="{{true}}" style="height:{{ (deviceHeight) + 'px' }}; margin-top:30" bindscrolltolower="loadMore" bindscroll="scrollFn" scroll-with-animation='true'>
+<view style="height:{{ (deviceHeight) + 'px' }}">
 	<van-panel title="欢迎您的使用"></van-panel>
 	<!-- banner页面 -->
 	<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
@@ -17,4 +17,4 @@
 		<van-loading size="24px">加载中...</van-loading>
 	</view>
 
-</scroll-view>
+</view>

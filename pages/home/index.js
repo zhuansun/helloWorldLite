@@ -23,17 +23,13 @@ Page({
     // 采用衔接滑动
     circular: true,
     // 自动切换时间间隔2s
-    interval: 2000,
+    interval: 3500,
     // 滑动动画时长0.5s
     duration: 500,
     // 前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值
     previousMargin: 0,
     // 后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值
     nextMargin: 0,
-    // 保存定时器
-    timer: null, 
-    // 设定触发条件的距离
-    scrollTop: 5, 
     //获取的设备高度
     deviceHeight: null,
     //后台列表数据
@@ -49,122 +45,111 @@ Page({
     //测试数据
     gridData: [
       {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "2",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "3",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "4",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "5",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转",
         "info": "99"
       }, {
         "id": "6",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "7",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "8",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "8",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "10",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "11",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "12",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "13",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "14",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "15",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "16",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "17",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       }, {
         "id": "18",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
-        "link-type": "navigateTo",
-        "url": 11,
-        "text": "Navigate 跳转"
-      }, {
-        "id": "19",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
-        "link-type": "navigateTo",
-        "url": 11,
-        "text": "Navigate 跳转"
-      }, {
-        "id": "20",
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
@@ -173,38 +158,64 @@ Page({
     //测试数据
     gridDataPush: [
       {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
       },
       {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
-      }, {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
-      }, {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
-      }, {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
-      }, {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
-      }, {
-        "icon": "http://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-02/ec9b6-691582636626_.pic.jpg",
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
+        "link-type": "navigateTo",
+        "url": 11,
+        "text": "Navigate 跳转"
+      },
+      {
+        "id": "1",
+        "icon": "https://youdao-note-images.oss-cn-hangzhou.aliyuncs.com/2020-05/20200603192412.png",
         "link-type": "navigateTo",
         "url": 11,
         "text": "Navigate 跳转"
@@ -219,6 +230,7 @@ Page({
     this.getSystemInfo();
     this.getModuleList(this.data.paginate.page);
   },
+
 
   /**
    * 获取系统信息，设备高度等
@@ -279,80 +291,38 @@ Page({
   // },
 
   /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+  onPullDownRefresh: function () {
+    console.log('fresh')
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    //模拟加载
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1500);
+  },
+  /**
    * 页面上拉触底事件的处理函数
    */
-  getMore: function () {
-    if (this.data.paginate.hasNext) {
-      console.log("上拉加载上拉加载上拉加载上拉加载上拉加载");
-      // 显示加载图标
-      // wx.showLoading({
-      //   title: '玩命加载中',
-      // })
-      this.getModuleList(this.data.paginate.page + 1);
-      // wx.hideLoading();
-    }
-
-  },
-
-  /**
-   * 监听该页面用户下拉刷新事件
-   */
-  onPullDownRefresh() {
-    // 可以在触发时发起请求，请求成功后调用wx.stopPullDownRefresh()来结束下拉刷新
-    console.log('下拉拉拉')
-  },
-   /**
-    * 函数式触发开始下拉刷新。如可以绑定按钮点击事件来触发下拉刷新
-    */
-  refresh(_this) {
-    wx.startPullDownRefresh({
-      success(errMsg) {
-        console.log('开始下拉刷新', errMsg)
-       
-      },
-      complete() {
-        console.log('下拉刷新完毕')
-        wx.stopPullDownRefresh()
-      }
-    });
-  },
-  /**
-   * 防抖，优化性能
-   */
-  scrollFn(e) {
-    // 当滚动时，滚动条位置距离页面顶部小于设定值时，触发下拉刷新
-    // 通过将设定值尽可能小，并且初始化scroll-view组件竖向滚动条位置为设定值。来实现下拉刷新功能，但没有官方的体验好
-    clearTimeout(this.timer)
-    if (e.detail.scrollTop < this.data.scrollTop) {
-      this.timer = setTimeout(() => {
-        this.refresh()
-      }, 350)
-    }
-  },
-  /**
-   * 触底上拉加载更多
-   */
-  loadMore() { 
+  onReachBottom: function () {
     console.log("上拉上拉")
-    // this.setData({
-    //   hiddenScrollLoading:false
-    // })
-    // console.log(this.data.hiddenScrollLoading)
-
-    // var tempArr = this.data.gridData;
-    // tempArr.push.apply(tempArr,this.data.gridDataPush)
-    //   this.data.gridData.push(this.data.gridDataPush)
-    //   this.setData({
-    //     gridData: tempArr
-    //  })
-    //      console.log("上拉结束")
-    //      this.setData({
-    //       hiddenScrollLoading:true
-    //     })
+    this.setData({
+      hiddenScrollLoading: false
+    })
     console.log(this.data.hiddenScrollLoading)
+    var _this = this;
+    setTimeout(function () {
+      var tempArr = _this.data.gridData;
+      tempArr.push.apply(tempArr, _this.data.gridDataPush)
+      _this.setData({
+        gridData: tempArr,
+        hiddenScrollLoading: true
+      })
+    }, 1500);
+    console.log("上拉结束");
   },
-
-
 
   //获取首页数据，进行加载
   getModuleList: function (currentPage) {
