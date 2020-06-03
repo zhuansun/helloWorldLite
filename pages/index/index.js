@@ -26,7 +26,7 @@ Page({
   toUse: function(e) {
     console.log("跳转到首页，准备使用了。。。。。。");
     wx.switchTab({
-      url: '../home/index'
+      url: '../tool/index'
     })
   },
 
