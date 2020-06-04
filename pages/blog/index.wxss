@@ -1,0 +1,4 @@
+/**index.wxss**/
+.blog-list{
+  margin-top: 10px;
+}

@@ -30,6 +30,13 @@ Page({
     })
   },
 
+  /**
+   * 游客登陆使用 
+   */
+  touristLogin: function(e){
+    this.toUse();
+  },
+
   login: function(e) {
     this.setData({ loadingLogin:true })
     //拿到用户的头像信息之后，紧接着请求服务器接口进行登陆

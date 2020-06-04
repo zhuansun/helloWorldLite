@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<van-search value="{{ value }}" input-align="center" placeholder="请输入文件标题关键词" use-action-slot bind:change="onChange" bind:search="onSearch">
+	<view slot="action" bind:tap="onSearchClick">搜索</view>
+</van-search>
+<van-tabs active="{{ active }}" bind:click="onTabsClick">
+	<van-tab title="标签 1">
+  <view class="blog-list" wx:for='{{5}}' wx:key='index' >
+  	<van-card tag="Hot" desc="描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息描述信息" title="商品标题" thumb="{{ imageURL }}"  >
+			<!-- <view slot="footer">
+				<van-button size="mini">按钮</van-button>
+				<van-button size="mini">按钮</van-button>
+			</view> -->
+		</van-card>
+  </view>
+	
+	</van-tab>
+	<van-tab title="标签 2">内容 2</van-tab>
+	<van-tab title="标签 3">内容 3</van-tab>
+	<van-tab title="标签 4">内容 4</van-tab>
+	<van-tab title="标签 5">内容 5</van-tab>
+	<van-tab title="标签 6">内容 6</van-tab>
+</van-tabs>

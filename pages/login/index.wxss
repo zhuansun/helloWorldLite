@@ -19,3 +19,7 @@
 .userstepsbutton {
   margin-top: 50px;
 }
+
+.touristButton {
+  margin-top: 30px;
+}
