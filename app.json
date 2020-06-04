@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/login/index",
     "pages/tool/index",
     "pages/mine/index"
   ],
