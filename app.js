@@ -2,6 +2,14 @@ import urlConfig from './etc/config'
 
 //app.js
 App({
+
+  globalData: {
+    userInfo: null,
+    errorMessage: null //用于当从其他页面跳转到登陆页面时，在登录页面显示错误信息
+  },
+  //声明urlConfig，以便于在后续所有页面都能使用
+  urlConfig,
+
   onLaunch: function () {
     const _this = this;
     // 获取用户信息
@@ -31,11 +39,6 @@ App({
   },
   onHide: function () {
     console.log("app.js ---onHide---");
-  },
-  globalData: {
-    userInfo: null,
-    errorMessage: null//用于当从其他页面跳转到登陆页面时，在登录页面显示错误信息
-  },
-   //声明urlConfig，以便于在后续所有页面都能使用
-  urlConfig, 
+  }
+
 })

@@ -1,5 +1,7 @@
 //index.js
 import Notify from '../../dist/notify/notify';
+
+var api = require('../../etc/httpUtil.js').default;
 //获取应用实例
 const app = getApp()
 
@@ -11,8 +13,7 @@ Page({
     active: 0,
     errorMessage: null,
     loadingLogin: false,
-    steps: [
-      {
+    steps: [{
         text: '获取头像信息',
         desc: '请授权本小程序使用您的微信头像和昵称',
       },
@@ -23,7 +24,48 @@ Page({
     ],
   },
 
-  toUse: function(e) {
+  toUse: function (e) {
+    this.setData({
+      loadingLogin: true
+    })
+    //拿到用户的头像信息之后，紧接着请求服务器接口进行登陆
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var params = {
+          "code": res.code
+        }
+        const _this = this;
+        api.login(params).then(res => {
+          this.setData({
+            loadingLogin: false
+          })
+          var responseData = res.data;
+          if (responseData.success) {
+            Notify({
+              type: 'success',
+              message: "登陆成功"
+            });
+            _this.toTool();
+          }
+        }, err => {
+          console.log(err)
+          this.setData({
+            loadingLogin: false
+          })
+          Notify({
+            type: 'danger',
+            message: err.errMsg
+          });
+        })
+      }
+    })
+  },
+
+  /**
+   * 跳转到工具页面开始使用
+   */
+  toTool: function (e) {
     console.log("跳转到首页，准备使用了。。。。。。");
     wx.switchTab({
       url: '../tool/index'
@@ -33,118 +75,46 @@ Page({
   /**
    * 游客登陆使用 
    */
-  touristLogin: function(e){
-    this.toUse();
+  touristLogin: function (e) {
+    this.toTool();
   },
 
-  login: function(e) {
-    this.setData({ loadingLogin:true })
-    //拿到用户的头像信息之后，紧接着请求服务器接口进行登陆
-    wx.login({
-      success: res => {
-        const _this = this;
-              console.log("success");
-              Notify({ type: 'success', message: '登录成功' });
-              //将token保存下来
-              wx.setStorageSync('token', "12312313123123")
-              this.setData({ loadingLogin:false })
-              _this.toUse();
-
-
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      //   wx.request({
-      //     url: app.urlConfig.basePath + '/api/user/login',
-      //     data: {
-      //       code: res.code
-      //     },
-      //     method: "POST",
-      //     header: {
-      //       'content-type': 'application/json' // 默认值
-      //     },
-      //     success(res) {
-      //       console.log(res.data.code);
-      //       if (res.data.code == 200) {
-      //         console.log("success");
-      //         $Message({
-      //           content: "登陆成功",
-      //           type: 'success'
-      //         });
-      //         _this.setData({
-      //           active: 2,
-      //           hasLogin: true
-      //         })
-      //         //将token保存下来
-      //         wx.setStorageSync('token', res.data.vo)
-      //       } else {
-      //         $Message({
-      //           content: res.data.msg,
-      //           type: 'error'
-      //         });
-      //       }
-      //       _this.setData({
-      //         loadingLogin: false
-      //       })
-      //     },
-      //     fail() {
-      //       //将token保存下来
-      //       $Message({
-      //         content: "请求失败",
-      //         type: 'error'
-      //       });
-      //       _this.setData({
-      //         loadingLogin: false
-      //       })
-      //     }
-      //   })
-      }
-    })
-  },
-
-
-  onLoad: function() {
+  onLoad: function () {
     const app = getApp()
-    console.log("userinfo"+app.globalData.userInfo);
-    const _this = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        hasUserInfo: true,
+        active: 1
       });
-      _this.toUse();
     } else if (this.data.canIUse) {
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true,
+          active: 1
         });
-        _this.toUse();
       }
     } else {
       wx.getUserInfo({
         success: res => {
-          console.log(res.userInfo);
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true,
+            active:1
           });
-          _this.toUse();
         }
       })
     }
-
-    let token = wx.getStorageSync('token');
-    console.log("token:"+token);
-    console.log("userinfo:" + this.data.hasUserInfo);
-
-    console.log("44444-->" + (app.globalData.userInfo && token));
+    //todo  这里有问题
+    // let token = wx.getStorageSync('token');
+    let token = '1111111';
+    console.log(app.globalData.userInfo)
+    console.log(token)
     if (app.globalData.userInfo && token) {
       this.toUse();
     }
-    //有可能是用其他页面跳转过来的，需要设置errorMessage
-    this.setData({
-      errorMessage: app.globalData.errorMessage
-    })
 
   },
 
@@ -152,9 +122,12 @@ Page({
   /**
    * 获取用户的微信信息头像和昵称
    */
-  getUserAvatarAndName: function(e) {
+  getUserAvatarAndName: function (e) {
     if (e.detail.userInfo === undefined) {
-      Notify({ type: 'danger', message: '已拒绝授权' });
+      Notify({
+        type: 'danger',
+        message: '已拒绝授权'
+      });
     } else {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
@@ -162,7 +135,10 @@ Page({
         hasUserInfo: true,
         active: 1
       })
-      Notify({ type: 'success', message: '授权成功' });
+      Notify({
+        type: 'success',
+        message: '授权成功'
+      });
     }
   }
 })

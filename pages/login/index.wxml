@@ -21,7 +21,7 @@
 		<van-steps steps="{{ steps }}" active="{{ active }}" direction="vertical" active-color="#3399ff" />
 		<view class="userstepsbutton">
 			<van-button block wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" type="primary" bind:getuserinfo="getUserAvatarAndName">授权登陆</van-button>
-			<van-button block wx:elif="{{hasUserInfo}}" type="primary" bind:click="login" loading="{{loadingLogin}}">开始使用</van-button>
+			<van-button block wx:elif="{{hasUserInfo}}" type="primary" bind:click="toUse" loading="{{loadingLogin}}">开始使用</van-button>
 		</view>
 	</view>
 	<view class="touristButton">
